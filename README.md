@@ -22,7 +22,7 @@ This uses `platformio.org` to compile the code for the wemos.
 
 ## config
 
-edit `src/main.cpp` and set your wifi ssid, etc
+edit `src/local.h` and set your wifi ssid, etc
 
 ## building and loading
 

@@ -3,20 +3,20 @@
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
 
+
 #define FASTLED_ESP8266_D1_PIN_ORDER
 #include <FastLED.h>
 
 #define LED_PIN     6
-#define NUM_LEDS    60
+#define NUM_LEDS    30
+
+#include "local.h"
 
 CRGB leds[NUM_LEDS];
 
-
-const char* ssid = "YOUR NETWORK NAME HERE";
-const char* password = "SOME SECRET STUFF HERE";
-
-
 const int led = 13;
+const char* ssid = MY_SSID;
+const char* password = MY_SSID_PASSWORD;
 
 bool lights_should_pulse = false;
 bool lights_should_christmas = false;
@@ -153,12 +153,14 @@ void handleBright(void) {
   server.send(200,"text/plain", "ok");
 }
 
+
 void handleCylon(void) {
   lights_should_pulse = false;
   lights_should_christmas = false;
   lights_should_cylon = ! lights_should_cylon;
   server.send( 200, "text/plain", "ok");
 }
+
 
 void handlePulse(void) {
   lights_should_pulse = ! lights_should_pulse;
@@ -269,4 +271,5 @@ void loop(void){
   if (lights_should_christmas) pulse_christmas();
   if (lights_should_cylon) pulse_cylon();
 }
+
 
